@@ -1,0 +1,165 @@
+swagger: '2.0'
+info:
+  description: This is a simple API
+  version: 1.0.0
+  title: Simple Inventory API
+tags:
+- name: Employer
+- name: user
+  description: user
+
+paths:
+  /register:
+    post:
+      tags:
+      - user
+      summary: create user
+      description: This function for crete user
+      operationId: createuser
+      parameters:
+      - in: "body"
+        name: "infomation"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/user"
+      responses:
+        200:
+          description: Created
+        400:
+          description: Plase Enter Information
+
+  /login:
+    post:
+      tags: 
+      - user
+      summary: login user 
+      description: This function for login
+      operationId: login user
+      parameters: 
+      - in: "body"
+        name: "data"
+        description: "load data from server"
+        required: true
+        schema:
+          $ref: "#/definitions/login"
+      responses: 
+        200:
+          description: Login is successful
+        400:
+          description: passworld is incorrect
+
+  /category:
+    post:
+      tags: 
+      - Employer
+      summary: shop infomation
+      description: This function for infomation
+      operationId: category infomation
+      parameters: 
+      - in: "body"
+        name: "category data"
+        description: This function for login
+        required: true
+        schema:
+          $ref: '#/definitions/category'
+      responses:
+        200:
+          description: OK
+  
+  /category/edit:
+    post:
+      tags: 
+      - Employer
+      summary: Employer can edit infomation in this path
+      description: This function for infomation
+      operationId: category edit
+      parameters: 
+      - in: "body"
+        name: "category edit"
+        description: this function can edit post
+        required: true
+        schema:
+          $ref: '#/definitions/category'
+      responses:
+        200:
+          description: OK
+    
+
+definitions:
+  user: 
+    type: object
+    required:
+    - email
+    - passworld
+    - gender
+    - birthday
+    properties:
+      email:
+        type: string
+        example: tae_chanhom@hotmail.com
+      passworld:
+        type: string
+        example: 029959866Tae
+      gender:
+        type: string
+        example: man
+      brithday:
+        type: string
+        example: 14/12/42
+
+  login:
+    type: object
+    required: 
+    - email
+    - password
+    properties:
+      email:
+        type: string
+        example: john777@gmail.com
+      password:
+        type: string
+        example: supersecret777
+
+  category:
+    type: object
+    required: 
+    - shopname
+    - description
+    - wage
+    - min
+    - max
+    - location
+    - province
+    properties:
+      shopname:
+        type: string
+        example: coffee shop
+      description:
+        type: string
+        example: information about you shop
+      wage:
+        type: string
+        example: Week
+      min:
+        type: integer
+        example: 1000
+      max:
+        type: integer
+        example: 8000
+      location:
+        type: string
+        example: lamlugar 12130
+      province:
+        type: string
+        example: bangkok
+        
+  
+# Added by API Auto Mocking Plugin
+# basePath: /61070078/test/1.0.0
+schemes:
+ - https
+# Added by API Auto Mocking Plugin
+# basePath: /61070078/UTnai_v01/1.0.0
+# Added by API Auto Mocking Plugin
+basePath: /61070078/UTNai_V01_API/1.0.0
