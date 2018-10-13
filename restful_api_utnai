@@ -24,10 +24,39 @@ paths:
         schema:
           $ref: "#/definitions/user"
       responses:
-        200:
+        201:
           description: Created
+          schema:
+            $ref: '#/definitions/user'
         400:
           description: Plase Enter Information
+          schema:
+                type: object
+                properties:
+                  statuscode:
+                    type: string
+                    example: "4000001"
+                  statustext:
+                    type: string
+                    example: "filde not complete"
+                  email:
+                    type: string
+                    example: "Plase Enter Email"
+                  passworld:
+                    type: string
+                    example: "Plase Enter Passworld"
+                  firstname:
+                    type: string
+                    example: "Plase Enter Firstname"
+                  lastname:
+                    type: string
+                    example: "Plase Enter Lastname"
+                  gender:
+                    type: string
+                    example: "Plase Enter Gender"
+                  birthday:
+                    type: string
+                    example: "Plase Enter Birthday"
 
   /login:
     post:
@@ -46,6 +75,8 @@ paths:
       responses: 
         200:
           description: Login is successful
+          schema:
+            $ref: "#/definitions/login"
         400:
           description: passworld is incorrect
 
@@ -66,6 +97,8 @@ paths:
       responses:
         200:
           description: OK
+          schema:
+            $ref: '#/definitions/category'
   
   /category/edit:
     post:
@@ -84,6 +117,8 @@ paths:
       responses:
         200:
           description: OK
+          schema:
+            $ref: '#/definitions/category'
     
 
 definitions:
@@ -156,6 +191,7 @@ definitions:
         
   
 # Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
 # basePath: /61070078/test/1.0.0
 schemes:
  - https
