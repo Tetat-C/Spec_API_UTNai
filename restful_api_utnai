@@ -78,7 +78,36 @@ paths:
           schema:
             $ref: "#/definitions/login"
         400:
-          description: passworld is incorrect
+          description: Login is unsuccessful
+          schema:
+                type: object
+                properties:
+                  statuscode:
+                    type: string
+                    example: "4000002"
+                  statustext:
+                    type: string
+                    example: "Login is unsuccessful"
+                  email:
+                    type: string
+                    example: "Plase Enter Email"
+                  passworld:
+                    type: string
+                    example: "Plase Enter Passworld"
+        406:
+          description: Login is unsuccessful
+          schema:
+                type: object
+                properties:
+                  statuscode:
+                    type: string
+                    example: "4060002"
+                  statustext:
+                    type: string
+                    example: "Login is unsuccessful"
+                  passworld:
+                    type: string
+                    example: "Passworld is incorrect"
 
   /category:
     post:
