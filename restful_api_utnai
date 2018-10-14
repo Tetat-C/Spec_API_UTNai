@@ -5,8 +5,9 @@ info:
   title: Simple Inventory API
 tags:
 - name: Employer
+- name: Employee
 - name: user
-  description: user
+  description: Unregistered user
 
 paths:
   /register:
@@ -14,8 +15,8 @@ paths:
       tags:
       - user
       summary: create user
-      description: This function for crete user
-      operationId: createuser
+      description: This function for create user
+      operationId: createUser
       parameters:
       - in: "body"
         name: "infomation"
@@ -38,7 +39,7 @@ paths:
                     example: "4000001"
                   statustext:
                     type: string
-                    example: "filde not complete"
+                    example: "Field not complete"
                   email:
                     type: string
                     example: "Plase Enter Email"
@@ -108,7 +109,92 @@ paths:
                   passworld:
                     type: string
                     example: "Passworld is incorrect"
-
+  /interest:
+    post:
+      tags:
+      - Employee
+      summary: Interest selection
+      description: ""
+      operationId: interestSelection
+      parameters:
+      - in: "body"
+        name: "interest data"
+        description: ""
+        required: true
+        schema:
+          $ref: '#/definitions/interest'
+      responses:
+        200:
+          description: Interest selected
+          schema:
+            $ref: '#/definitions/interest'
+        400:
+          description: Field not complete
+          schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: string
+                    example: "40000003"
+                  statusText:
+                    type: string
+                    example: Field not complete
+                  interest:
+                    type: string
+                    example: "Please select your interest"
+  /profile/{firstname}:
+    get:
+      tags:
+      - Employee
+      summary: Show employee profile
+      description: ""
+      operationId: showProfile
+      parameters:
+        - in: "body"
+          name: ""
+          required: true
+          schema:
+            $ref: '#/definitions/user'
+      responses:
+          200:
+            description: OK
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: tae_chanhom@hotmail.com
+                passworld:
+                  type: string
+                  example: 029959866Tae
+                gender:
+                  type: string
+                  example: male
+                brithday:
+                  type: string
+                  example: 14/12/42
+                firstname:
+                  type: string
+                  example: John
+                lastname:
+                  type: string
+                  example: Smith
+                interest:
+                  type: string
+                  example: Coffee Shop
+                age:
+                  type: integer
+                  example: 20
+                language:
+                  type: string
+                  example: Thai
+                experience:
+                  type: string
+                  example: none
+                
+        
+      
+          
   /category:
     post:
       tags: 
@@ -148,6 +234,26 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/category'
+            
+  /role:
+    post:
+      tags:
+      - user
+      summary: User can select their role in this page
+      description: " "
+      operationId: roleSelection
+      parameters:
+      - in: "body"
+        name: "Role selection"
+        description: "Role Selection"
+        required: true
+        schema:
+          $ref: '#/definitions/role'
+      responses:
+        200:
+          description: "Role Selected"
+          schema:
+            $ref: "#/definitions/role"
     
 
 definitions:
@@ -158,6 +264,8 @@ definitions:
     - passworld
     - gender
     - birthday
+    - firstname
+    - lastname
     properties:
       email:
         type: string
@@ -167,11 +275,17 @@ definitions:
         example: 029959866Tae
       gender:
         type: string
-        example: man
+        example: male
       brithday:
         type: string
         example: 14/12/42
-
+      firstname:
+        type: string
+        example: John
+      lastname:
+        type: string
+        example: Smith
+        
   login:
     type: object
     required: 
@@ -217,7 +331,23 @@ definitions:
       province:
         type: string
         example: bangkok
+  role:
+    type: object
+    required:
+    - role
+    properties:
+      role:
+        type: string
+        example: Employee
         
+  interest:
+    type: object
+    required:
+    - interest
+    properties:
+      interest:
+        type: string
+        example: Coffee shop
   
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
@@ -227,4 +357,6 @@ schemes:
 # Added by API Auto Mocking Plugin
 # basePath: /61070078/UTnai_v01/1.0.0
 # Added by API Auto Mocking Plugin
-basePath: /61070078/UTNai_V01_API/1.0.0
+# basePath: /61070078/UTNai_V01_API/1.0.0
+# Added by API Auto Mocking Plugin
+basePath: /61070089/UTNai_API/1.0.0
